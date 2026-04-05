@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { AlertCircle, CheckCircle2, LockKeyhole, Mail, UserRound } from 'lucide-react'
+import { AlertCircle, CheckCircle2, LockKeyhole, Mail } from 'lucide-react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { studentAccount } from '../data/studentAuth'
@@ -96,27 +96,14 @@ function LoginPage() {
               Student Login
             </p>
             <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-              Access your student dashboard
+              Student Login
             </h2>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-300">
-              Log in with the student account to open the protected dashboard for
-              Aizah Imran Shah. The form validates your email and password and
-              gives instant feedback while typing.
+              Log in to continue to your dashboard. The form validates your email
+              and password and gives instant feedback while typing.
             </p>
 
             <div className="mt-8 space-y-4">
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500 p-3 text-white">
-                    <UserRound className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Student account</p>
-                    <p className="text-lg font-semibold text-white">Aizah Imran Shah</p>
-                  </div>
-                </div>
-              </div>
-
               <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
                   Password conditions
@@ -151,7 +138,7 @@ function LoginPage() {
                     type="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    placeholder="aizaa@zararclasses.com"
+                    placeholder="example@zararclasses.com"
                     className="w-full bg-transparent text-white outline-none placeholder:text-slate-500"
                   />
                 </div>
