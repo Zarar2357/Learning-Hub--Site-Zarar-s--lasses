@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { AlertCircle, CheckCircle2, LockKeyhole, Mail } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { studentAccount } from '../data/studentAuth'
@@ -17,6 +17,7 @@ function LoginPage() {
   const { isAuthenticated, login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitStatus, setSubmitStatus] = useState('idle')
 
@@ -154,12 +155,20 @@ function LoginPage() {
                 <div className="flex items-center gap-3 rounded-[1.25rem] border border-white/10 bg-slate-950/50 px-4 py-3 focus-within:border-cyan-300/40">
                   <LockKeyhole className="h-4 w-4 text-cyan-200" />
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="Enter your password"
                     className="w-full bg-transparent text-white outline-none placeholder:text-slate-500"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((current) => !current)}
+                    className="inline-flex items-center justify-center text-slate-300 transition hover:text-white"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
                 </div>
                 <p className={`mt-2 text-sm ${password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
                   {passwordHint}
