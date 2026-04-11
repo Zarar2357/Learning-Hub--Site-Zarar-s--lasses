@@ -38,9 +38,9 @@ function LoginPage() {
   }, [email, isEmailFormatValid, matchesKnownEmail])
 
   const passwordHint = useMemo(() => {
+    if (!hasSubmitted) return ''
     if (!password) return 'Enter your password.'
     if (!isPasswordFormatValid) return 'Password does not meet the required format yet.'
-    if (!hasSubmitted) return 'Password format looks good. Press login to continue.'
     if (!matchesKnownEmail) return 'Enter the correct email first to verify the password.'
     if (password !== studentAccount.password) {
       return 'The email is correct, but the password is wrong. Please check again and try again with the correct password.'
@@ -181,9 +181,11 @@ function LoginPage() {
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
-                <p className={`mt-2 text-sm ${hasSubmitted && password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
-                  {passwordHint}
-                </p>
+                {passwordHint ? (
+                  <p className={`mt-2 text-sm ${hasSubmitted && password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
+                    {passwordHint}
+                  </p>
+                ) : null}
               </div>
 
               {submitMessage ? (
