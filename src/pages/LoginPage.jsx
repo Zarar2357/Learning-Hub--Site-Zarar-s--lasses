@@ -20,6 +20,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitStatus, setSubmitStatus] = useState('idle')
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   const trimmedEmail = email.trim().toLowerCase()
   const isEmailFormatValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)
@@ -38,13 +39,14 @@ function LoginPage() {
 
   const passwordHint = useMemo(() => {
     if (!password) return 'Enter your password.'
-    if (!matchesKnownEmail) return 'Enter the correct email first to verify the password.'
     if (!isPasswordFormatValid) return 'Password does not meet the required format yet.'
+    if (!hasSubmitted) return 'Password format looks good. Press login to continue.'
+    if (!matchesKnownEmail) return 'Enter the correct email first to verify the password.'
     if (password !== studentAccount.password) {
       return 'The email is correct, but the password is wrong. Please check again and try again with the correct password.'
     }
     return 'Password looks correct.'
-  }, [password, matchesKnownEmail, isPasswordFormatValid])
+  }, [password, matchesKnownEmail, isPasswordFormatValid, hasSubmitted])
 
   if (isAuthenticated) {
     return <Navigate to="/student-dashboard" replace />
@@ -52,6 +54,7 @@ function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault()
+    setHasSubmitted(true)
 
     if (!isEmailFormatValid) {
       setSubmitStatus('error')
@@ -138,7 +141,11 @@ function LoginPage() {
                   <input
                     type="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(event) => {
+                      setEmail(event.target.value)
+                      setSubmitMessage('')
+                      setSubmitStatus('idle')
+                    }}
                     placeholder="example@zararclasses.com"
                     className="w-full bg-transparent text-white outline-none placeholder:text-slate-500"
                   />
@@ -157,7 +164,11 @@ function LoginPage() {
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}
-                    onChange={(event) => setPassword(event.target.value)}
+                    onChange={(event) => {
+                      setPassword(event.target.value)
+                      setSubmitMessage('')
+                      setSubmitStatus('idle')
+                    }}
                     placeholder="Enter your password"
                     className="w-full bg-transparent text-white outline-none placeholder:text-slate-500"
                   />
@@ -170,7 +181,7 @@ function LoginPage() {
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
-                <p className={`mt-2 text-sm ${password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
+                <p className={`mt-2 text-sm ${hasSubmitted && password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
                   {passwordHint}
                 </p>
               </div>
