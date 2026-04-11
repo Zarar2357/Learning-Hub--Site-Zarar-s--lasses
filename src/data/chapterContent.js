@@ -375,8 +375,284 @@ export const chapterContent = {
       ],
     },
   },
-}
+  science: {
+    'chemical-reactions-and-equations': {
+      heroLabel: 'Detailed Notes + Question Bank',
+      notesTitle: 'Teacher-grade notes',
+      notesIntro:
+        'A clean, structured explanation of every core idea from Chemical Reactions and Equations, designed for revision, classroom teaching, and test preparation.',
+      questionsTitle: 'Practice sets',
+      questionsIntro:
+        'Fifty questions arranged from easy to competitive level so students can build confidence step by step.',
+      notes: [
+        {
+          title: '1. Introduction',
+          definition:
+            'Many changes in daily life involve the formation of new substances. Whenever new substances are formed, a chemical reaction has taken place.',
+          bullets: [
+            'Milk left outside turns sour.',
+            'Iron exposed to air rusts.',
+            'Grapes get fermented.',
+            'Food is cooked and digested.',
+            'Respiration occurs continuously in living beings.',
+          ],
+        },
+        {
+          title: '2. Chemical Reaction',
+          definition:
+            'A chemical reaction is a process in which one or more substances called reactants undergo chemical change to form new substances called products having different properties.',
+          bullets: [
+            'Reactants are the starting substances.',
+            'Products are the new substances formed after the reaction.',
+            'Chemical properties of products are different from reactants.',
+          ],
+        },
+        {
+          title: '3. Indicators of Chemical Reaction',
+          definition:
+            'A chemical reaction is often identified through visible or measurable changes.',
+          bullets: [
+            'Change in state: solid to liquid or liquid to gas.',
+            'Change in colour: for example blue copper sulphate solution turning green with iron.',
+            'Evolution of gas: for example hydrogen gas when zinc reacts with dilute acid.',
+            'Change in temperature: heat may be released or absorbed.',
+          ],
+          examples: ['CaO + H2O -> Ca(OH)2 + heat', 'Zn + 2HCl -> ZnCl2 + H2'],
+        },
+        {
+          title: '4. Activity 1.1 - Burning of Magnesium Ribbon',
+          definition:
+            'When magnesium ribbon is burnt in air, it reacts with oxygen and forms magnesium oxide.',
+          bullets: [
+            'Magnesium burns with a dazzling white flame.',
+            'A white powder of magnesium oxide is formed.',
+            'Heat is produced during the reaction.',
+          ],
+          examples: ['2Mg + O2 -> 2MgO'],
+        },
+        {
+          title: '5. Activity 1.2 and Activity 1.3',
+          definition:
+            'Simple laboratory observations help identify chemical reactions clearly.',
+          bullets: [
+            'Zinc with dilute acid gives bubbles because hydrogen gas is evolved.',
+            'Temperature rises, showing heat change.',
+            'Lead nitrate with potassium iodide forms a yellow precipitate.',
+          ],
+          examples: ['Zn + 2HCl -> ZnCl2 + H2', 'Pb(NO3)2 + 2KI -> PbI2 + 2KNO3'],
+        },
+        {
+          title: '6. Chemical Equations and Word Equations',
+          definition:
+            'A word equation represents a reaction using names of reactants and products, while a chemical equation uses symbols and formulae.',
+          bullets: [
+            'Word equation example: Magnesium + Oxygen -> Magnesium oxide.',
+            'Chemical equation example: Mg + O2 -> MgO.',
+            'Chemical equations are more compact and useful than sentence form.',
+          ],
+        },
+        {
+          title: '7. Components of a Chemical Equation',
+          definition:
+            'A chemical equation has reactants, products, an arrow showing direction, and plus signs where more than one substance is present.',
+          bullets: [
+            'Reactants are written on the left-hand side.',
+            'Products are written on the right-hand side.',
+            'Arrow shows the direction of reaction.',
+            'Plus sign separates multiple reactants or products.',
+          ],
+        },
+        {
+          title: '8. Skeletal and Balanced Chemical Equations',
+          definition:
+            'An unbalanced equation is called a skeletal equation. A balanced chemical equation has equal numbers of atoms of each element on both sides.',
+          bullets: [
+            'Example of skeletal equation: Mg + O2 -> MgO.',
+            'Oxygen atoms are not equal in this form, so it is unbalanced.',
+            'Balanced equation obeys the law of conservation of mass.',
+          ],
+          examples: ['2Mg + O2 -> 2MgO', 'Zn + H2SO4 -> ZnSO4 + H2'],
+        },
+        {
+          title: '9. Law of Conservation of Mass and Balancing',
+          definition:
+            'Mass can neither be created nor destroyed, so total atoms of each element must be equal on both sides of a chemical equation.',
+          bullets: [
+            'Balancing is done by changing coefficients, not subscripts.',
+            'The smallest whole-number coefficients must be used.',
+            'Hit and trial method is commonly used in Class 10 chemistry.',
+          ],
+          examples: ['3Fe + 4H2O -> Fe3O4 + 4H2'],
+        },
+        {
+          title: '10. Writing Physical States and Reaction Conditions',
+          definition:
+            'Chemical equations often include physical states and conditions to describe reactions more accurately.',
+          bullets: [
+            '(s) means solid, (l) means liquid, (g) means gas, and (aq) means aqueous solution.',
+            'Aqueous means dissolved in water.',
+            'Conditions like heat, pressure, catalyst, or sunlight may be written above the arrow.',
+          ],
+          examples: ['3Fe(s) + 4H2O(g) -> Fe3O4(s) + 4H2(g)', 'NaCl(aq) means sodium chloride dissolved in water'],
+        },
+        {
+          title: '11. Types of Chemical Reactions',
+          definition:
+            'The main types of reactions in this chapter are combination, decomposition, displacement, double displacement, and redox reactions.',
+          bullets: [
+            'Combination reaction: two or more substances form a single product.',
+            'Decomposition reaction: one substance breaks into simpler substances.',
+            'Displacement reaction: a more reactive element displaces a less reactive one.',
+            'Double displacement reaction: ions are exchanged between compounds.',
+            'Redox reaction: oxidation and reduction occur together.',
+          ],
+        },
+        {
+          title: '12. Combination and Exothermic Reactions',
+          definition:
+            'In a combination reaction, substances combine to form a single product. Many of these reactions release heat and are exothermic.',
+          bullets: [
+            'General form: A + B -> AB.',
+            'CaO + H2O -> Ca(OH)2 is a combination reaction.',
+            'Combustion of methane and respiration are exothermic reactions.',
+          ],
+          examples: ['C + O2 -> CO2', '2H2 + O2 -> 2H2O', 'CH4 + 2O2 -> CO2 + 2H2O + heat'],
+        },
+        {
+          title: '13. Decomposition and Endothermic Reactions',
+          definition:
+            'In decomposition reactions, one substance breaks into two or more simpler substances. These may occur due to heat, electricity, or light.',
+          bullets: [
+            'Thermal decomposition takes place by heating.',
+            'Electrolytic decomposition takes place by electricity.',
+            'Photochemical decomposition takes place in the presence of light.',
+            'Many decomposition reactions absorb energy and are endothermic.',
+          ],
+          examples: ['CaCO3 -> CaO + CO2', '2H2O -> 2H2 + O2', '2AgCl -> 2Ag + Cl2'],
+        },
+        {
+          title: '14. Displacement and Double Displacement Reactions',
+          definition:
+            'In displacement reactions, a more reactive element replaces a less reactive element. In double displacement reactions, ions are exchanged between compounds.',
+          bullets: [
+            'Displacement general form: A + BC -> AC + B.',
+            'Double displacement general form: AB + CD -> AD + CB.',
+            'If an insoluble solid is formed in double displacement, it is called a precipitation reaction.',
+          ],
+          examples: ['Fe + CuSO4 -> FeSO4 + Cu', 'Na2SO4 + BaCl2 -> BaSO4 + 2NaCl'],
+        },
+        {
+          title: '15. Oxidation, Reduction, and Redox Reactions',
+          definition:
+            'Oxidation means gain of oxygen or loss of hydrogen. Reduction means loss of oxygen or gain of hydrogen. When both happen together, the reaction is called redox reaction.',
+          bullets: [
+            'Copper gains oxygen in 2Cu + O2 -> 2CuO, so copper is oxidised.',
+            'In CuO + H2 -> Cu + H2O, CuO is reduced and H2 is oxidised.',
+            'Redox reactions always involve both oxidation and reduction at the same time.',
+          ],
+          examples: ['2Cu + O2 -> 2CuO', 'CuO + H2 -> Cu + H2O'],
+        },
+        {
+          title: '16. Effects of Oxidation - Corrosion and Rancidity',
+          definition:
+            'Two important effects of oxidation in daily life are corrosion and rancidity.',
+          bullets: [
+            'Corrosion is the slow destruction of metals by air, moisture, or chemicals.',
+            'Examples include rusting of iron, green layer on copper, and black layer on silver.',
+            'Rancidity is the oxidation of fats and oils causing bad smell and taste in food.',
+            'Corrosion can be prevented by painting, greasing, oiling, galvanisation, and alloying.',
+            'Rancidity can be prevented using antioxidants, nitrogen gas, airtight containers, and refrigeration.',
+          ],
+        },
+      ],
+      summary: [
+        'Chemical reactions form new substances with new properties.',
+        'A balanced chemical equation has equal atoms on both sides.',
+        'Combination reactions form one product, while decomposition reactions break one compound into simpler substances.',
+        'Displacement reactions depend on reactivity, and double displacement reactions involve exchange of ions.',
+        'Oxidation and reduction together form redox reactions.',
+        'Corrosion and rancidity are important real-life effects of oxidation.',
+      ],
+      questionGroups: [
+        {
+          title: 'Easy',
+          accent: 'from-emerald-400 to-lime-400',
+          questions: [
+            'Define a chemical reaction.',
+            'Name any two indicators of a chemical reaction.',
+            'What is a word equation?',
+            'Write the chemical equation for burning magnesium ribbon.',
+            'What is a skeletal chemical equation?',
+            'What is meant by a balanced chemical equation?',
+            'State the law of conservation of mass.',
+            'What do the symbols (s), (l), (g), and (aq) mean?',
+            'Define a combination reaction.',
+            'What is corrosion?',
+          ],
+        },
+        {
+          title: 'Medium',
+          accent: 'from-amber-400 to-orange-400',
+          questions: [
+            'Explain any four indicators of a chemical reaction with examples.',
+            'Differentiate between word equation and chemical equation.',
+            'Balance the equation: Mg + O2 -> MgO.',
+            'Why must chemical equations be balanced?',
+            'What is meant by aqueous solution? Give one example.',
+            'Differentiate between exothermic and endothermic reactions.',
+            'Write one example each of thermal decomposition and photochemical decomposition.',
+            'Explain displacement reaction with an example.',
+            'What is a precipitation reaction? Give one example.',
+            'Differentiate between oxidation and reduction.',
+          ],
+        },
+        {
+          title: 'Hard',
+          accent: 'from-rose-400 to-orange-500',
+          questions: [
+            'Balance the equation: Fe + H2O -> Fe3O4 + H2.',
+            'Write observations of burning magnesium ribbon and state why it is a chemical reaction.',
+            'Classify the reaction CaO + H2O -> Ca(OH)2 and give reason.',
+            'Why is respiration called an exothermic reaction?',
+            'Explain electrolytic decomposition with example.',
+            'Why does silver chloride turn grey in sunlight?',
+            'Explain double displacement reaction with the help of Na2SO4 + BaCl2 -> BaSO4 + 2NaCl.',
+            'Why is CuO + H2 -> Cu + H2O called a redox reaction?',
+            'State methods of prevention of corrosion.',
+            'Explain rancidity and how it can be prevented.',
+          ],
+        },
+        {
+          title: 'Very Hard (Competitive Level)',
+          accent: 'from-fuchsia-500 to-pink-500',
+          questions: [
+            'Balance the equation: C2H6 + O2 -> CO2 + H2O.',
+            'Write the steps involved in balancing the equation Fe + H2O -> Fe3O4 + H2 by hit and trial method.',
+            'Why can changing subscripts while balancing a chemical equation give a wrong result?',
+            'Differentiate between displacement and double displacement reactions with one example each.',
+            'Give one example each of combination, decomposition, displacement, double displacement, and redox reaction.',
+            'Why is Zn + HCl considered a chemical reaction? Mention the observations.',
+            'In the reaction CuO + H2 -> Cu + H2O, identify oxidised substance and reduced substance.',
+            'What happens when lead nitrate solution is mixed with potassium iodide solution? Name the type of reaction.',
+            'Why is decomposition of CaCO3 called an endothermic reaction?',
+            'Why is it necessary to mention physical states in some chemical equations?',
+            'How does galvanisation help in preventing corrosion?',
+            'Why are chips packets flushed with nitrogen gas?',
+            'Explain the difference between rusting of iron and rancidity of food.',
+            'Write balanced equations for combustion of methane and formation of water from hydrogen and oxygen.',
+            'What is meant by reaction conditions written above the arrow? Give examples.',
+            'Why is iron able to displace copper from copper sulphate solution?',
+            'What are the products formed when ferrous sulphate is heated strongly?',
+            'How can you identify a reaction in which gas is evolved?',
+            'Why is balancing of equations based on the law of conservation of mass?',
+            'Write a short note on the effects of oxidation in daily life.',
+          ],
+        },
+      ],
+    },
+  },}
 
 export function getChapterContent(subjectId, chapterId) {
   return chapterContent[subjectId]?.[chapterId] ?? null
 }
+
