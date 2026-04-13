@@ -5,33 +5,25 @@ import {
   BookText,
   CircleHelp,
   Download,
+  GraduationCap,
   ScrollText,
   Sparkles,
 } from 'lucide-react'
-import { Fragment, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getChapterContent } from '../data/chapterContent'
 import { getChapterById, getSubjectById } from '../data/data'
-
-function renderMathText(text) {
-  const parts = String(text).split(/(\^[A-Za-z0-9+-]+)/g)
-
-  return parts.map((part, index) => {
-    if (part.startsWith('^')) {
-      return <sup key={`${part}-${index}`}>{part.slice(1)}</sup>
-    }
-
-    return <Fragment key={`${part}-${index}`}>{part}</Fragment>
-  })
-}
+import { hasChapterSolutions } from '../data/solutions'
+import { renderMathText } from '../utils/renderMathText'
 
 function ChapterPage() {
   const { subjectId, chapterId } = useParams()
   const subject = getSubjectById(subjectId)
   const chapter = getChapterById(subject, chapterId)
   const content = getChapterContent(subjectId, chapterId)
+  const hasSolutions = hasChapterSolutions(subjectId, chapterId)
   const exportRef = useRef(null)
   const [isDownloading, setIsDownloading] = useState(false)
 
@@ -265,8 +257,19 @@ function ChapterPage() {
                     {content.questionsIntro}
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-200">
-                  50 total questions
+                <div className="flex flex-wrap gap-3">
+                  <div className="rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-200">
+                    50 total questions
+                  </div>
+                  {hasSolutions ? (
+                    <Link
+                      to={`/subject/${subject.id}/chapter/${chapter.id}/solutions`}
+                      className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm font-medium text-cyan-100 transition hover:border-cyan-300/30 hover:bg-cyan-300/15"
+                    >
+                      <GraduationCap className="h-4 w-4" />
+                      Get Solutions
+                    </Link>
+                  ) : null}
                 </div>
               </div>
 

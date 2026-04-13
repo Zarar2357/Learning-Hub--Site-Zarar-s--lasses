@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
+import SolutionsPage from './pages/SolutionsPage'
 import StudentDashboardPage from './pages/StudentDashboardPage'
 import SubjectPage from './pages/SubjectPage'
 
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/subject/:subjectId/chapter/:chapterId"
           element={<ChapterPage />}
+        />
+        <Route
+          path="/subject/:subjectId/chapter/:chapterId/solutions"
+          element={<SolutionsPage />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
