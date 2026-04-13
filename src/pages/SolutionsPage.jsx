@@ -216,11 +216,6 @@ function SolutionsPage() {
                             ))}
                           </div>
 
-                          {solution.finalAnswer ? (
-                            <div className="mt-4 rounded-[1.25rem] border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-sm font-medium leading-7 text-emerald-50 sm:text-base">
-                              {renderMathText(solution.finalAnswer)}
-                            </div>
-                          ) : null}
                         </div>
                       </div>
                     </article>
