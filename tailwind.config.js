@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
       },
       boxShadow: {
         glow: '0 30px 80px rgba(56, 189, 248, 0.16)',

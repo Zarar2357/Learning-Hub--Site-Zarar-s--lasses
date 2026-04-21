@@ -75,7 +75,7 @@ function SubjectPage() {
         </div>
       </section>
 
-      <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {subject.chapters.map((chapter, index) => (
           <ChapterCard
             key={chapter.id}

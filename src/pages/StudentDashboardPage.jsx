@@ -57,7 +57,7 @@ function StudentDashboardPage() {
         </motion.div>
       </section>
 
-      <section className="mt-8 grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

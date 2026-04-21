@@ -9,8 +9,22 @@
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Zarar's Classes</title>
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('zarar-classes-theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch {}
+      })()
+    </script>
   </head>
-  <body class="bg-slate-950">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -115,7 +115,7 @@ function AdminStudentsPage() {
         </motion.div>
       </section>
 
-      <section className="mt-8 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

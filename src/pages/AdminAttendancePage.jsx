@@ -117,7 +117,7 @@ function AdminAttendancePage() {
         </motion.div>
       </section>
 
-      <section className="mt-8 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
