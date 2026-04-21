@@ -1,3 +1,7 @@
+import AdminAttendancePage from './pages/AdminAttendancePage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
+import AdminStudentDetailsPage from './pages/AdminStudentDetailsPage'
+import AdminStudentsPage from './pages/AdminStudentsPage'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -5,6 +9,7 @@ import ChapterPage from './pages/ChapterPage'
 import ContactPage from './pages/ContactPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
+import NcertClass10Page from './pages/NcertClass10Page'
 import NotFoundPage from './pages/NotFoundPage'
 import PrivacyPage from './pages/PrivacyPage'
 import SolutionsPage from './pages/SolutionsPage'
@@ -16,12 +21,45 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/ncert-class-10th" element={<NcertClass10Page />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/student-dashboard"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['student']}>
               <StudentDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/students"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminStudentsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/students/:studentId"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminStudentDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/attendance"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminAttendancePage />
             </ProtectedRoute>
           }
         />

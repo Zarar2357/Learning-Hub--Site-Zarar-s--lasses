@@ -19,21 +19,20 @@ function SubjectPage() {
   ).length
 
   return (
-    <div className="w-full">
-      <section className="section-shell overflow-hidden px-6 py-8 sm:px-8 lg:px-10">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+    <div className="w-full space-y-8">
+      <section className="page-hero">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/8 via-transparent to-violet-500/10" />
+
+        <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 transition hover:border-white/20 hover:text-white"
-            >
+            <Link to="/ncert-class-10th" className="button-secondary">
               <ArrowLeft className="h-4 w-4" />
-              Back to home
+              Back to NCERT Class 10th
             </Link>
 
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-7 flex items-center gap-4">
               <div
-                className={`rounded-[1.75rem] bg-gradient-to-br ${subject.accent} p-4 text-white shadow-xl`}
+                className={`rounded-[1.55rem] bg-gradient-to-br ${subject.accent} p-4 text-white shadow-xl`}
               >
                 <SubjectIcon className="h-8 w-8" />
               </div>
@@ -41,22 +40,22 @@ function SubjectPage() {
                 <p className="text-sm uppercase tracking-[0.35em] text-slate-400">
                   Subject Overview
                 </p>
-                <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">
+                <h2 className="mt-2 text-4xl font-semibold text-white">
                   {subject.title}
                 </h2>
               </div>
             </div>
 
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
-              Browse all chapters for {subject.title}. Chapters with uploaded notes
-              are marked clearly in the grid below.
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
+              Browse all chapters for {subject.title}. Uploaded notes, question
+              banks, and solutions are clearly marked in the chapter grid below.
             </p>
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl"
+            className="panel-card-strong"
           >
             <div className="flex items-center gap-3">
               <div className="rounded-2xl bg-white/10 p-3 text-cyan-200">
@@ -64,7 +63,7 @@ function SubjectPage() {
               </div>
               <div>
                 <p className="text-sm text-slate-400">Available chapters</p>
-                <p className="text-2xl font-semibold text-white">
+                <p className="text-3xl font-semibold text-white">
                   {subject.chapters.length}
                 </p>
                 <p className="mt-1 text-sm text-emerald-200">
@@ -76,7 +75,7 @@ function SubjectPage() {
         </div>
       </section>
 
-      <section className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {subject.chapters.map((chapter, index) => (
           <ChapterCard
             key={chapter.id}

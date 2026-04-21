@@ -5,7 +5,7 @@ import { siteConfig } from '../data/site'
 function PrivacyPage() {
   return (
     <div className="flex w-full items-center justify-center">
-      <section className="section-shell w-full max-w-5xl overflow-hidden px-6 py-10 sm:px-8 lg:px-10">
+      <section className="section-shell w-full max-w-6xl overflow-hidden px-6 py-10 sm:px-8 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -13,21 +13,22 @@ function PrivacyPage() {
         >
           <div className="flex flex-col gap-6 border-b border-white/10 pb-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-cyan-200/70">
+              <div className="eyebrow">
+                <ShieldCheck className="h-4 w-4" />
                 Privacy Policy & Content License
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+              </div>
+              <h2 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
                 Privacy Policy
               </h2>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
+              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
                 Please read this policy carefully before accessing or using the
                 educational content available on {siteConfig.brandName}.
               </p>
             </div>
 
-            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-xl">
+            <div className="panel-card">
               <p className="text-sm text-slate-400">Last Updated</p>
-              <p className="mt-1 text-lg font-semibold text-white">
+              <p className="mt-2 text-xl font-semibold text-white">
                 {siteConfig.privacyLastUpdated}
               </p>
             </div>
@@ -100,7 +101,7 @@ function PrivacyPage() {
                 href={siteConfig.gmailComposeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/10"
+                className="button-secondary mt-3"
               >
                 <Mail className="h-4 w-4" />
                 {siteConfig.ownerEmail}
@@ -138,7 +139,7 @@ function PrivacyPage() {
 
             <PolicyBlock title="13. Contact Information">
               <p>For any concerns regarding content usage or copyright:</p>
-              <div className="mt-3 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200">
+              <div className="panel-card mt-3 inline-flex items-center gap-3 text-slate-200">
                 <Mail className="h-4 w-4 text-cyan-200" />
                 <span className="font-medium">{siteConfig.ownerEmail}</span>
               </div>
@@ -166,12 +167,12 @@ function PrivacyPage() {
 
 function PolicyBlock({ title, children }) {
   return (
-    <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+    <div className="panel-card-strong">
       <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-cyan-100">
         <ShieldCheck className="h-4 w-4" />
         {title}
       </div>
-      <div className="space-y-3 text-base leading-7">{children}</div>
+      <div className="space-y-3 text-base leading-8">{children}</div>
     </div>
   )
 }

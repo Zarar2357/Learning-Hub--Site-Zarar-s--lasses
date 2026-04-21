@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { AlertCircle, CheckCircle2, Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { studentAccount } from '../data/studentAuth'
+import { getDashboardRouteForRole, getRoleLabel } from '../utils/accountRoutes'
 
 const passwordRules = [
   'At least 8 characters',
@@ -14,7 +14,7 @@ const passwordRules = [
 function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { isAuthenticated, login } = useAuth()
+  const { currentUser, isAuthenticated, findAccountByEmail, login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -24,32 +24,33 @@ function LoginPage() {
 
   const trimmedEmail = email.trim().toLowerCase()
   const isEmailFormatValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)
-  const matchesKnownEmail = trimmedEmail === studentAccount.email
+  const matchedAccount = isEmailFormatValid ? findAccountByEmail(trimmedEmail) : null
+  const matchesKnownEmail = Boolean(matchedAccount)
   const isPasswordLengthValid = password.length >= 8
   const hasAtSymbol = password.includes('@')
   const hasNumber = /\d/.test(password)
   const isPasswordFormatValid = isPasswordLengthValid && hasAtSymbol && hasNumber
 
   const emailHint = useMemo(() => {
-    if (!email) return 'Enter your student email address.'
+    if (!email) return 'Enter your account email address.'
     if (!isEmailFormatValid) return 'Please enter a valid email address.'
     if (!matchesKnownEmail) return 'This email does not exist. Please check and try again.'
-    return 'Email looks correct.'
-  }, [email, isEmailFormatValid, matchesKnownEmail])
+    return `${getRoleLabel(matchedAccount.role)} account found.`
+  }, [email, isEmailFormatValid, matchedAccount, matchesKnownEmail])
 
   const passwordHint = useMemo(() => {
     if (!hasSubmitted) return ''
     if (!password) return 'Enter your password.'
     if (!isPasswordFormatValid) return 'Password does not meet the required format yet.'
     if (!matchesKnownEmail) return 'Enter the correct email first to verify the password.'
-    if (password !== studentAccount.password) {
+    if (password !== matchedAccount.password) {
       return 'The email is correct, but the password is wrong. Please check again and try again with the correct password.'
     }
     return 'Password looks correct.'
-  }, [password, matchesKnownEmail, isPasswordFormatValid, hasSubmitted])
+  }, [password, matchesKnownEmail, isPasswordFormatValid, hasSubmitted, matchedAccount])
 
   if (isAuthenticated) {
-    return <Navigate to="/student-dashboard" replace />
+    return <Navigate to={getDashboardRouteForRole(currentUser?.role)} replace />
   }
 
   function handleSubmit(event) {
@@ -64,7 +65,7 @@ function LoginPage() {
 
     if (!matchesKnownEmail) {
       setSubmitStatus('error')
-      setSubmitMessage('This email does not exist. Please use the correct student email.')
+      setSubmitMessage('This email does not exist. Please use the correct account email.')
       return
     }
 
@@ -74,52 +75,54 @@ function LoginPage() {
       return
     }
 
-    if (password !== studentAccount.password) {
+    if (password !== matchedAccount.password) {
       setSubmitStatus('error')
       setSubmitMessage('The email is correct, but the password is wrong. Please check again and try again with the correct password.')
       return
     }
 
-    login()
+    const sessionUser = login(matchedAccount)
     setSubmitStatus('success')
-    setSubmitMessage('Login successful. Opening the student dashboard...')
-    const destination = location.state?.from || '/student-dashboard'
+    setSubmitMessage(`Login successful. Opening the ${getRoleLabel(sessionUser.role).toLowerCase()} dashboard...`)
+    const destination =
+      location.state?.from || getDashboardRouteForRole(sessionUser.role)
     navigate(destination, { replace: true })
   }
 
   return (
     <div className="flex w-full items-center justify-center">
-      <section className="section-shell w-full max-w-5xl overflow-hidden px-6 py-10 sm:px-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <section className="page-hero w-full max-w-6xl">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/8 via-transparent to-violet-500/10" />
+
+        <div className="relative z-10 grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
-            <p className="text-sm uppercase tracking-[0.35em] text-cyan-200/70">
-              Student Login
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-              Student Login
+            <div className="eyebrow">
+              <LockKeyhole className="h-4 w-4" />
+              Account Login
+            </div>
+            <h2 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
+              Login to your account
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-7 text-slate-300">
-              Log in to continue to your dashboard. The form validates your email
-              and password and gives instant feedback while typing.
+            <p className="mt-5 max-w-xl text-base leading-8 text-slate-300">
+              Students and admin accounts use the same secure login page. The form
+              checks your email while typing and verifies the password only when you submit.
             </p>
 
-            <div className="mt-8 space-y-4">
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
-                  Password conditions
-                </p>
-                <div className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-                  {passwordRules.map((rule) => (
-                    <div key={rule} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-1 h-4 w-4 text-emerald-300" />
-                      <span>{rule}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="mt-8 panel-card-strong">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
+                Password conditions
+              </p>
+              <div className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+                {passwordRules.map((rule) => (
+                  <div key={rule} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-4 w-4 text-emerald-300" />
+                    <span>{rule}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -129,7 +132,7 @@ function LoginPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.45 }}
             onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8"
+            className="panel-card-strong"
           >
             <div className="space-y-6">
               <div>
@@ -182,7 +185,7 @@ function LoginPage() {
                   </button>
                 </div>
                 {passwordHint ? (
-                  <p className={`mt-2 text-sm ${hasSubmitted && password === studentAccount.password && matchesKnownEmail ? 'text-emerald-300' : 'text-amber-200'}`}>
+                  <p className={`mt-2 text-sm ${hasSubmitted && matchesKnownEmail && password === matchedAccount.password ? 'text-emerald-300' : 'text-amber-200'}`}>
                     {passwordHint}
                   </p>
                 ) : null}
@@ -201,12 +204,9 @@ function LoginPage() {
                 </div>
               ) : null}
 
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg transition duration-300 hover:scale-[1.01] hover:shadow-[0_18px_40px_rgba(59,130,246,0.35)]"
-              >
+              <button type="submit" className="button-primary w-full">
                 <LockKeyhole className="h-4 w-4" />
-                Login to Dashboard
+                Login to Account
               </button>
 
               <p className="text-center text-sm text-slate-400">
