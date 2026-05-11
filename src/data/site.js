@@ -1,6 +1,6 @@
 export const siteConfig = {
   brandName: "Zarar's Classes",
-  tagline: 'Class 10 Mathematics & Science Notes for Students',
+  tagline: '',
   ownerEmail: 'aminzarar@gmail.com',
   ownerPhone: '+91 9149684142',
   ownerPhoneHref: 'tel:+919149684142',
